@@ -61,11 +61,12 @@ export class Rover {
   }
 
   reportStatus(): string {
-    let statusString: string = `(${this.coordinateX}, ${this.coordinateY}, ${directionToStringMap[this.direction]})`
+    let statusString: string = 
+      `(${this.coordinateX}, ${this.coordinateY}, ${directionToStringMap[this.direction]})`;
     if (this.isLost) {
       statusString += " LOST";
     } 
-    console.log(statusString);
+
     return statusString;
   }
 }
