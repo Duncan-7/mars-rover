@@ -1,4 +1,4 @@
-import { Direction } from "./direction";
+import { Direction, directionToStringMap } from "./direction";
 
 export class Rover {
   coordinateX: number;
@@ -6,20 +6,13 @@ export class Rover {
   direction: Direction;
   isLost: boolean;
 
-  directionMap: Object = {
-    "N" : Direction.NORTH,
-    "E" : Direction.EAST,
-    "S" : Direction.SOUTH,
-    "W" : Direction.WEST,
-  }
-
   constructor(
     coordinateX: number, 
     coordinateY: number, 
-    direction: string) {
+    direction: Direction) {
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
-    this.direction = this.directionMap[direction];
+    this.direction = direction;
     this.isLost = false;
   }
 
@@ -65,5 +58,14 @@ export class Rover {
       default:
         console.log('unrecognised direction');
     }
+  }
+
+  reportStatus(): string {
+    let statusString: string = `(${this.coordinateX}, ${this.coordinateY}, ${directionToStringMap[this.direction]})`
+    if (this.isLost) {
+      statusString += " LOST";
+    } 
+    console.log(statusString);
+    return statusString;
   }
 }
